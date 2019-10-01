@@ -4,7 +4,8 @@
   "description": "## Preámbulo",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
