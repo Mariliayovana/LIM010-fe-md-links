@@ -19,15 +19,11 @@ export const esCarperta = ruta => fs.lstatSync(ruta).isDirectory();
 // si el archivo es un markdown, se agrega (.md) devuelve true o false
 export const esArchivoMd = route => path.extname(route) === '.md';
 
-
-export const leerDirectorio = (ruta) => {
-  const arrOfFilesOrDirs = fs.readdirSync(ruta, 'utf8');
-  console.log(arrOfFilesOrDirs);
-  return arrOfFilesOrDirs;
-};
+// devuelve un array con todos los archivos de la ruta
+export const leerDirectorio = ruta => fs.readdirSync(ruta, 'utf8');
 
 export const obtenerArrayMd = (ruta) => {
-  const arrMd = [];
+  let arrMd = [];
 
   if (esArchivo(ruta)) { // Si es un archivo
     // Revisar si es un markdown
@@ -37,10 +33,9 @@ export const obtenerArrayMd = (ruta) => {
   } else if (esCarperta(ruta)) { // Si es una carpeta
     const archivos = leerDirectorio(ruta);
     archivos.forEach((elem) => {
-      const rutaAbsolutaMd = obtenerRutaAbsoluta(elem);
-      if (esArchivoMd(rutaAbsolutaMd)) {
-        arrMd.push(rutaAbsolutaMd);
-      }
+      const rutaAbsoluta = `${ruta}/${elem}`;
+      const arrayRutas = obtenerArrayMd(rutaAbsoluta);// se vuelve recurciva
+      arrMd = arrMd.concat(arrayRutas);
     });
   }
 
