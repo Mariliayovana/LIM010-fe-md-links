@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Mariliayovana/LIM010-fe-md-links#readme",
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0"
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "marked": "^0.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
