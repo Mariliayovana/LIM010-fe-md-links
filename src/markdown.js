@@ -1,7 +1,9 @@
 import marked from 'marked';
 import { leerArchivo } from './filesystem';
+import { obtenerArrayMd } from './index.js';
 
-export const obtenerArrayMdLinks = (arrPaths) => {
+export const obtenerArrayMdLinks = (rout) => {
+  const arrPaths = obtenerArrayMd(rout); // array de .md
   const arrLinks = [];
   arrPaths.forEach((filePath) => {
     const markdownContent = leerArchivo(filePath).toString();
@@ -13,5 +15,7 @@ export const obtenerArrayMdLinks = (arrPaths) => {
     };
     marked(markdownContent, { renderer });
   });
+
   return arrLinks;
 };
+// console.log(obtenerArrayMdLinks('../LIM010-fe-md-links/prueba'));
