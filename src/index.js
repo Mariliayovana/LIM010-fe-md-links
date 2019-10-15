@@ -2,8 +2,7 @@
 import { obtenerArrayMdLinks } from './markdown';
 import { validandoLinks } from './validador';
 import { existeRuta } from './filesystem';
-
-// console.log(obtenerArrayMd('../LIM010-fe-md-links/prueba'));
+import { stats, statsValidate } from './stats';
 
 export const mdLinks = (path, opts = {}) => new Promise((resolve, reject) => {
   if (existeRuta(path)) {
@@ -17,7 +16,24 @@ export const mdLinks = (path, opts = {}) => new Promise((resolve, reject) => {
   }
 });
 
-mdLinks('/home/marilia/Proyectos/LIM010-fe-md-links/prueba', { validate: true }).then((res) => {
-  console.log(res);
-});
-//validandoLinks('/home/marilia/Proyectos/LIM010-fe-md-links/prueba');
+export const mdLinksCli = (path, opts = {}) => new Promise((resolve, reject) => {
+  mdLinks(path, opts)
+    .then((res) => {
+      if (path !== undefined && opts.val === undefined && opts.stat === undefined) {
+        const result = res.map((element) => `${element.file} ${element.href} ${element.text}`);
+        resolve(result.join('\n'));
+      } else if (path !== undefined && opts.val === '--stats' && opts.stat === '--validate') {
+        resolve(statsValidate(res));
+      } else if (path !== undefined && opts.val === '--validate') {
+        const result1 = res.map((element) => `${element.file}  ${element.href} ${element.text} ${element.status} ${element.statusText}`);
+        resolve(result1.join('\n'));
+      } else if (path !== undefined && opts.val === '--stats') {
+        resolve(stats(res));
+      } else {
+        resolve('ingrese ruta');
+      }
+    })
+    .catch((err) => {
+      reject(err)
+    });
+    

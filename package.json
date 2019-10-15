@@ -13,6 +13,9 @@
   },
   "author": "Marilia Condor",
   "license": "MIT",
+  "bin": {
+    "say-hello": "./lib/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/Mariliayovana/LIM010-fe-md-links/issues"
   },
@@ -26,7 +29,7 @@
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "babel-jest": "^24.8.0",
-    "eslint": "^6.3.0",
+    "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.1.2",
