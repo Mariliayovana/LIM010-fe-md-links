@@ -20,12 +20,12 @@ export const mdLinksCli = (path, opts = {}) => new Promise((resolve, reject) => 
   mdLinks(path, opts)
     .then((res) => {
       if (path !== undefined && opts.val === undefined && opts.stat === undefined) {
-        const result = res.map((element) => `${element.file} ${element.href} ${element.text}`);
+        const result = res.map(element => `${element.file} ${element.href} ${element.text}`);
         resolve(result.join('\n'));
       } else if (path !== undefined && opts.val === '--stats' && opts.stat === '--validate') {
         resolve(statsValidate(res));
       } else if (path !== undefined && opts.val === '--validate') {
-        const result1 = res.map((element) => `${element.file}  ${element.href} ${element.text} ${element.status} ${element.statusText}`);
+        const result1 = res.map(element => `${element.file}  ${element.href} ${element.text} ${element.status} ${element.statusText}`);
         resolve(result1.join('\n'));
       } else if (path !== undefined && opts.val === '--stats') {
         resolve(stats(res));
@@ -34,6 +34,6 @@ export const mdLinksCli = (path, opts = {}) => new Promise((resolve, reject) => 
       }
     })
     .catch((err) => {
-      reject(err)
+      reject(err);
     });
-    
+});

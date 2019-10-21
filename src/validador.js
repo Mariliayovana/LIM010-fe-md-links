@@ -24,3 +24,6 @@ export const validandoLinks = (ruta) => {
   }));
   return Promise.all(resultPromise);
 };
+// validandoLinks('/home/marilia/Proyectos/LIM010-fe-md-links/prueba/prueba2').then((valor) => {
+//   console.log(valor);
+// });

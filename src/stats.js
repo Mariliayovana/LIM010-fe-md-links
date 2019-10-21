@@ -11,6 +11,7 @@ export const statsValidate = (arrMd) => {
     if (element.statusText !== 'OK') {
       arrBroken.push(element.statusText);
     }
+    return element.href;
   });
   return `Total: ${arrMd.length} Unique: ${arrUnico.length} broken: ${arrBroken.length}`;
 };

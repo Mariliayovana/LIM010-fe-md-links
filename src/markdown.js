@@ -25,7 +25,6 @@ export const obtenerArrayMd = (ruta) => {
   }
   return arrMd;
 };
-
 export const obtenerArrayMdLinks = (ruta) => {
   const arrPaths = obtenerArrayMd(ruta); // array de .md
   const arrLinks = [];
@@ -39,6 +38,5 @@ export const obtenerArrayMdLinks = (ruta) => {
     };
     marked(markdownContent, { renderer });
   });
-
   return arrLinks;
 };
